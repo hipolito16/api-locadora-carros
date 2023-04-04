@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class CarroController extends Controller
 {
+    public function __construct(Carro $carro)
+    {
+        $this->carro = $carro;
+    }
+
     /**
      * Display a listing of the resource.
      *
