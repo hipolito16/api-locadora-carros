@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  db:
+    image: postgres:9.5
+    container_name: 'lc_pgsql'
+    ports:
+      - "5000:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: lc
+      POSTGRES_HOST_AUTH_METHOD: md5
+      POSTGRES_LOCAL_AUTH_METHOD: md5
