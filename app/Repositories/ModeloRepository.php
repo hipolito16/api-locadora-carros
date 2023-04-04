@@ -15,7 +15,6 @@ class ModeloRepository
     public function selectAtributosRegistrosRelacionados($atributos)
     {
         $this->model = $this->model->with($atributos);
-        //a query está sendo montada
     }
 
     public function filtro($filtros)
@@ -26,7 +25,6 @@ class ModeloRepository
 
             $c = explode(':', $condicao);
             $this->model = $this->model->where($c[0], $c[1], $c[2]);
-            //a query está sendo montada
         }
     }
 
