@@ -8,22 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Marca extends Model
 {
     use HasFactory;
+
     protected $fillable = ['nome', 'imagem'];
 
-    public function rules() {
+    public function rules()
+    {
         return [
-            'nome' => 'required|unique:marcas,nome,'.$this->id.'|min:3',
+            'nome' => 'required|unique:marcas,nome,' . $this->id . '|min:3',
             'imagem' => 'required|file|mimes:png'
         ];
-
-        /*
-            1) tabela
-            2) nome da coluna que será pesquisada na tabela3
-            3) id do registro que será desconsiderado na pesquisa
-        */
     }
 
-    public function feedback() {
+    public function feedback()
+    {
         return [
             'required' => 'O campo :attribute é obrigatório',
             'imagem.mimes' => 'O arquivo deve ser uma imagem do tipo PNG',
@@ -32,8 +29,8 @@ class Marca extends Model
         ];
     }
 
-    public function modelos() {
-        //UMA marca POSSUI MUITOS modelos
+    public function modelos()
+    {
         return $this->hasMany('App\Models\Modelo');
     }
 }

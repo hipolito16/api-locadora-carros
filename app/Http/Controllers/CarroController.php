@@ -30,7 +30,7 @@ class CarroController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,7 +41,7 @@ class CarroController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Carro  $carro
+     * @param \App\Models\Carro $carro
      * @return \Illuminate\Http\Response
      */
     public function show(Carro $carro)
@@ -52,7 +52,7 @@ class CarroController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Carro  $carro
+     * @param \App\Models\Carro $carro
      * @return \Illuminate\Http\Response
      */
     public function edit(Carro $carro)
@@ -63,8 +63,8 @@ class CarroController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Carro  $carro
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Carro $carro
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Carro $carro)
@@ -75,7 +75,7 @@ class CarroController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Carro  $carro
+     * @param \App\Models\Carro $carro
      * @return \Illuminate\Http\Response
      */
     public function destroy(Carro $carro)
