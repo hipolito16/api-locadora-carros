@@ -26,6 +26,6 @@ class Modelo extends Model
 
     public function marca()
     {
-        return $this->belongsTo('App\Models\Marca');
+        return $this->belongsTo('App\Models\Marca', 'marca_id', 'id');
     }
 }

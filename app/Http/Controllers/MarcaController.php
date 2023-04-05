@@ -21,7 +21,6 @@ class MarcaController extends Controller
      */
     public function index(Request $request)
     {
-
         $marcaRepository = new MarcaRepository($this->marca);
 
         if ($request->has('atributos_modelos')) {
@@ -164,6 +163,5 @@ class MarcaController extends Controller
 
         $marca->delete();
         return response()->json(['msg' => 'A marca foi removida com sucesso!'], 200);
-
     }
 }
