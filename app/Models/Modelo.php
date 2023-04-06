@@ -9,6 +9,8 @@ class Modelo extends Model
 {
     use HasFactory;
 
+    protected $table = 'modelos';
+
     protected $fillable = ['marca_id', 'nome', 'imagem', 'numero_portas', 'lugares', 'air_bag', 'abs'];
 
     public function rules()
@@ -21,6 +23,18 @@ class Modelo extends Model
             'lugares' => 'required|integer|digits_between:1,20',
             'air_bag' => 'required|boolean',
             'abs' => 'required|boolean'
+        ];
+    }
+
+    public function feedback()
+    {
+        return [
+            'required' => 'O campo :attribute é obrigatório',
+            'nome.unique' => 'O nome do modelo já está cadastrado',
+            'imagem.mimes' => 'A imagem deve ser do tipo PNG, JPEG ou JPG',
+            'numero_portas.digits_between' => 'O número de portas deve ser entre 1 e 5',
+            'lugares.digits_between' => 'O número de lugares deve ser entre 1 e 20',
+            'boolean' => 'O campo :attribute deve ser verdadeiro ou falso'
         ];
     }
 

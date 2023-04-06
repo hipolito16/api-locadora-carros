@@ -138,13 +138,13 @@ class ModeloController extends Controller
 
         if ($request->file('imagem')) {
             Storage::disk('public')->delete($modelo->imagem);
+            $imagem = $request->file('imagem');
+            $imagem_urn = $imagem->store('imagens/modelos', 'public');
+            $modelo->imagem = $imagem_urn;
         }
 
-        $imagem = $request->file('imagem');
-        $imagem_urn = $imagem->store('imagens/modelos', 'public');
 
         $modelo->fill($request->all());
-        $modelo->imagem = $imagem_urn;
         $modelo->save();
 
         return response()->json($modelo, 200);

@@ -9,6 +9,8 @@ class Marca extends Model
 {
     use HasFactory;
 
+    protected $table = 'marcas';
+
     protected $fillable = ['nome', 'imagem'];
 
     public function rules()

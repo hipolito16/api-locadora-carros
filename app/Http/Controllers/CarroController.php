@@ -22,7 +22,7 @@ class CarroController extends Controller
      */
     public function index(Request $request)
     {
-        $carroRepository = new CarroRepository($this->marca);
+        $carroRepository = new CarroRepository($this->carro);
 
         if ($request->has('atributos_modelo')) {
             $atributos_modelos = 'modelo:id,' . $request->atributos_modelos;
@@ -62,15 +62,7 @@ class CarroController extends Controller
     {
         $request->validate($this->carro->rules(), $this->carro->feedback());
 
-        $imagem = $request->file('imagem');
-        $imagem_urn = $imagem->store('imagens', 'public');
-
-        $carro = $this->carro->create([
-            'modelo_id' => $request->modelo_id,
-            'placa' => $request->placa,
-            'disponivel' => $request->disponivel,
-            'km' => $request->km
-        ]);
+        $carro = $this->carro->create($request->all());
 
         return response()->json($carro, 201);
     }
@@ -134,15 +126,7 @@ class CarroController extends Controller
             $request->validate($carro->rules(), $carro->feedback());
         }
 
-        if ($request->file('imagem')) {
-            Storage::disk('public')->delete($carro->imagem);
-        }
-
-        $imagem = $request->file('imagem');
-        $imagem_urn = $imagem->store('imagens', 'public');
-
         $carro->fill($request->all());
-        $carro->imagem = $imagem_urn;
         $carro->save();
 
         return response()->json($carro, 200);
@@ -161,8 +145,6 @@ class CarroController extends Controller
         if ($carro === null) {
             return response()->json(['erro' => 'Impossível realizar a exclusão. O recurso solicitado não existe'], 404);
         }
-
-        Storage::disk('public')->delete($carro->imagem);
 
         $carro->delete();
         return response()->json(['msg' => 'O carro foi removido com sucesso!'], 200);
